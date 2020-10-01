@@ -158,7 +158,7 @@ layout: default
 
                 <div class="col-6 col-12-narrower">
                     <section>
-                        <a href="Tagme.us" class="image featured"><img src="https://github.com/gladcolor/Tagme_pyQt/raw/master/images/UI.jpg" alt="" /></a>
+                        <a href="http://www.tagme.us/" class="image featured"><img src="https://github.com/gladcolor/Tagme_pyQt/raw/master/images/UI.jpg" alt="" /></a>
                         <header>
                             <h3>Tagme</h3>
                         </header>
@@ -178,30 +178,7 @@ layout: default
 
 <!--								</div>-->
             </div>
-<!--							<div class="row">-->
-<!--								<div class="col-6 col-12-narrower">-->
 
-<!--									<section>-->
-<!--										<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>-->
-<!--										<header>-->
-<!--											<h3>Hyperspace Travel</h3>-->
-<!--										</header>-->
-<!--										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>-->
-<!--									</section>-->
-
-<!--								</div>-->
-<!--								<div class="col-6 col-12-narrower">-->
-
-<!--									<section>-->
-<!--										<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>-->
-<!--										<header>-->
-<!--											<h3>And Another Train</h3>-->
-<!--										</header>-->
-<!--										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>-->
-<!--									</section>-->
-
-<!--								</div>-->
-<!--							</div>-->
 
             <footer class="major">
                 <ul class="buttons">
@@ -210,6 +187,21 @@ layout: default
             </footer>
 
         </section>
+
+    <section  id="news" class="wrapper style4 container">
+            <header class="major" style="text-align:center">
+                <h2>News</h2>
+            </header>
+
+        <!-- Content -->
+            <div class="content">
+                <section>
+                    <ul id="news_list">
+                    </ul>
+                </section>
+            </div>
+
+    </section>
 
 </article>
 
@@ -228,3 +220,33 @@ layout: default
 <!--					</footer>-->
 
 <!--				</section>-->
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="module">
+    import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
+
+    var month = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."];
+
+    async function firstAsync() {
+        const octokit = new Octokit();
+        const response = await octokit.request('GET /repos/{owner}/{repo}/issues', {
+              owner: 'UrbanDS',
+              repo: 'UrbanDS.github.io'
+            });
+        if (response.status == 200){
+            for (var i=0;i<response.data.length;i++)
+            {
+                var row = response.data[i];
+                if(row.title.slice(0,4)=="News"){
+                    var date = new Date(row.created_at);
+                    var date_str = month[date.getMonth()] + " " + date.getDate() + ", "+ date.getFullYear();
+                    $("#news_list").append("<li>" + marked( "**" + date_str + "** " +  row.body) + "</li>");
+                }
+                console.log(row);
+            }
+        }
+    }
+    $(document).ready(function () {
+        firstAsync();
+    });
+</script>
