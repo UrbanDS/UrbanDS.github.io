@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Home
-permalink: /index.html
+title: Home_xye
+permalink: /index_xye.html
 ---
   Welcome to the Intelligent Systems Research Laboratory at Texas A&M University. We focus on developing advanced algorithms and analytical methods to design next-generation autonomous systems operating in uncertain dynamic environments. We achieve these goals using theoretical tools from stochastic dynamical systems, robust control, nonlinear estimation, and convex optimization. Our recent work is summarized below.
 
