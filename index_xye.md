@@ -34,7 +34,7 @@ Space situational awareness is concerned with tracking space objects and classif
 
 Future exascale machines are expected to have $$10^5-10^6$$ processors, providing a deep hierarchy of systems and resources. However, many challenges exist, which must be overcome before exascale systems can be utilized as a useful tool to further understanding critical scientific inquires. Among the main obstacles to scaling code to exascale levels is the communication necessary in tightly coupled problems, such as in **uncertainty propagation, turbulence flow simulations at high Reynolds numbers, and large-scale convex optimization**. The synchronization across processors can cause 50-80% processor idle time. Our research focuses on asynchronous numerical algorithms that do not wait for data to be synchronized. Communication between processors is modeled as a stochastic channel, and the behavior of the numerical algorithm is analyzed in a stochastic jump dynamical system framework. Funding Source: NSF.
 
-<img class="mySlides" src="assets/images/async.png" style="display:block; margin:auto; width:100%;max-width:960px">
+<img class="mySlides" src="images/your_image.png" style="display:block; margin:auto; width:100%;max-width:960px">
 
 ### Selected Papers
 
