@@ -77,6 +77,5 @@ DEPENDENCIES
   tzinfo-data
   wdm (~> 0.1.1)
 
-ad
 BUNDLED WITH
    2.2.17
