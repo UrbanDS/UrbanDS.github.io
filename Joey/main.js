@@ -262,58 +262,55 @@ map.once('load', () => {
 	  console.log(csv_path);
 	  
 	  internal_mobility_data = []
-	  d3.csv(csv_path).then(function(data) {
-		console.log(data);
+	  d3.csv(csv_path).then(function(csv_data) {
+		internal_mobility_data = csv_data;
+		console.log(internal_mobility_data);
+		console.log(income_contour_data);
+		if (income_contour_data && internal_mobility_data) {
+			  console.log("Gotcha!")
+			  // create layer
+			  const polygonlayer = new PolygonLayer({
+				id: 'PolygonLayer',
+				data: income_contour_data,
+				getPolygon: d => d.contour,
+				getFillColor: d => d.income,
+				getLineColor: [255, 255, 255],
+				getLineWidth: 20,
+				lineWidthMinPixels: 1,
+				pickable: false
+			  });
+
+			  //var min = Math.min.apply(null, internal_mobility_data.map(x => x.weight));
+			  //var max = Math.max.apply(null, internal_mobility_data.map(x => x.weight));
+			  var min = 1.0;
+			  var max = 783.0;
+			  //console.log(min, max)
+
+			  // create internal layer
+			  const arcLayer = new ArcLayer({
+				id: 'arc-internal',
+				data: internal_mobility_data,
+				getSourcePosition: d => [d["O_id_x"], d["O_id_y"]],
+				getTargetPosition: d => [d["D_id_x"], d["D_id_y"]],
+				getSourceColor: d => category_colors[d["category"]],
+				getTargetColor: d => category_colors[d["category"]],
+				getHeight: d => (d["weight"]-min)/(max-min)* 5,
+				getWidth: d => ((d["weight"]-min)/(max-min)) * 20,
+			  });
+		  
+			  const deckOverlay = new MapboxOverlay({
+				interleaved: true,
+				//layers: [polygonlayer, arcLayer]
+			  });
+			  console.log(deckOverlay);
+			  map.addControl(deckOverlay);
+			  
+			  // Update layers
+			  deckOverlay.setProps({
+				layers: [polygonlayer, arcLayer]
+			  });
+		  }
 	  });
-	  
-	  console.log(internal_mobility_data);
-	  console.log(income_contour_data);
-	  
-	  if (income_contour_data && internal_mobility_data) {
-		  
-		  console.log("Gotcha!")
-		  // create layer
-		  const polygonlayer = new PolygonLayer({
-			id: 'PolygonLayer',
-			data: income_contour_data,
-			getPolygon: d => d.contour,
-			getFillColor: d => d.income,
-			getLineColor: [255, 255, 255],
-			getLineWidth: 20,
-			lineWidthMinPixels: 1,
-			pickable: false
-		  });
-
-		  //var min = Math.min.apply(null, internal_mobility_data.map(x => x.weight));
-		  //var max = Math.max.apply(null, internal_mobility_data.map(x => x.weight));
-		  var min = 1.0;
-		  var max = 783.0;
-		  //console.log(min, max)
-
-		  // create internal layer
-		  const arcLayer = new ArcLayer({
-			id: 'arc-internal',
-			data: internal_mobility_data,
-			getSourcePosition: d => [d["O_id_x"], d["O_id_y"]],
-			getTargetPosition: d => [d["D_id_x"], d["D_id_y"]],
-			getSourceColor: d => category_colors[d["category"]],
-			getTargetColor: d => category_colors[d["category"]],
-			getHeight: d => (d["weight"]-min)/(max-min)* 5,
-			getWidth: d => ((d["weight"]-min)/(max-min)) * 20,
-		  });
-	  
-		  const deckOverlay = new MapboxOverlay({
-			interleaved: true,
-			//layers: [polygonlayer, arcLayer]
-		  });
-		  console.log(deckOverlay);
-		  map.addControl(deckOverlay);
-		  
-		  // Update layers
-		  deckOverlay.setProps({
-			layers: [polygonlayer, arcLayer]
-		  });
-	  }
     });
 	});
 });
