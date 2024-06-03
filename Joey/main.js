@@ -262,14 +262,15 @@ map.once('load', () => {
 	  console.log(csv_path);
 	  
 	  internal_mobility_data = []
-	  d3.csv(csv_path, function(csv_data) {
-		internal_mobility_data.push(csv_data);
+	  d3.csv(csv_path).then(function(data) {
+		console.log(data);
 	  });
 	  
 	  console.log(internal_mobility_data);
 	  console.log(income_contour_data);
 	  
 	  if (income_contour_data && internal_mobility_data) {
+		  
 		  console.log("Gotcha!")
 		  // create layer
 		  const polygonlayer = new PolygonLayer({
