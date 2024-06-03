@@ -258,7 +258,8 @@ map.once('load', () => {
 	  document.getElementById('data-select').addEventListener('change', (event) => {
 		selectedDataset = selectedType[event.target.value];
 		
-		//console.log(selectedDataset);
+	  const csv_path = selectedDataset[0];
+	  console.log(csv_path);
       d3.csv(selectedDataset[0], function(data) {
 		
         internal_mobility_data = data;
