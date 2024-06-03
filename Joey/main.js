@@ -1,11 +1,11 @@
 import './style.css';
 //import 'mapbox-gl/dist/mapbox-gl.css';
-import {MapboxOverlay} from '@deck.gl/mapbox';
-import { ArcLayer } from '@deck.gl/layers';
-import {load} from '@loaders.gl/core';
-import { CSVLoader } from '@loaders.gl/csv';
+//import {MapboxOverlay} from '@deck.gl/mapbox';
+//import { ArcLayer } from '@deck.gl/layers';
+//import {load} from '@loaders.gl/core';
+//import { CSVLoader } from '@loaders.gl/csv';
 //import mapboxgl from 'mapbox-gl';
-import {PolygonLayer} from '@deck.gl/layers';
+//import {PolygonLayer} from '@deck.gl/layers';
 
 const MAPBOX_TOKEN = "pk.eyJ1Ijoiam9leWxlZWx6IiwiYSI6ImNqczVzOTdhbzBpd3Y0NG8xaTVwaDUzOHYifQ.NStc2mKrg3LQfLq1q32BpQ";
 
