@@ -260,7 +260,11 @@ map.once('load', () => {
 		
 	  const csv_path = selectedDataset[0];
 	  console.log(csv_path);
-      d3.csv(selectedDataset[0], function(data) {
+	  d3.csv(csv_path, function(csv_data) {
+		console.log(csv_data);
+	  });
+	  /*
+      d3.csv(csv_path, function(data) {
 		
         internal_mobility_data = data;
         console.log(income_contour_data);
@@ -310,7 +314,7 @@ map.once('load', () => {
 		    layers: [polygonlayer, arcLayer]
 		  });
         }
-	  });
+	  });*/
     });
 	});
 });
