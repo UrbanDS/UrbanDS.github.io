@@ -259,6 +259,7 @@ map.once('load', () => {
 		
 		//console.log(selectedDataset);
       d3.csv(selectedDataset[0], function(data) {
+		console.log(data);
         internal_mobility_data = data.data;
         //console.log(income_contour_data);
 		
@@ -298,7 +299,7 @@ map.once('load', () => {
             interleaved: true,
             //layers: [polygonlayer, arcLayer]
           });
-        
+		  console.log(deckOverlay);
           map.addControl(deckOverlay);
 		  
 		  // Update layers
