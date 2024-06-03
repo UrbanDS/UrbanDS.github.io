@@ -1,4 +1,4 @@
-import './style.css';
+//import './style.css';
 //import 'mapbox-gl/dist/mapbox-gl.css';
 //import {MapboxOverlay} from '@deck.gl/mapbox';
 //import { ArcLayer } from '@deck.gl/layers';
@@ -229,7 +229,7 @@ const polygonlayer = new PolygonLayer({
 */
 
 map.once('load', () => {
-
+  console.log("map is loaded");
   let income_contour_data = undefined;
   let external_mobility_data = undefined;
   let internal_mobility_data = undefined;
