@@ -259,9 +259,10 @@ map.once('load', () => {
 		
 		//console.log(selectedDataset);
       d3.csv(selectedDataset[0], function(data) {
-		console.log(data);
-        internal_mobility_data = data.data;
-        //console.log(income_contour_data);
+		
+        internal_mobility_data = data;
+        console.log(income_contour_data);
+		console.log(internal_mobility_data);
 		
         if (income_contour_data && internal_mobility_data) {
           console.log("Gotcha!")
