@@ -290,7 +290,10 @@ map.once('load', () => {
 			  const arcLayer = new ArcLayer({
 				id: 'arc-internal',
 				data: internal_mobility_data,
-				getSourcePosition: d => [d["O_id_x"], d["O_id_y"]],
+				getSourcePosition: function(d) {
+					console.log([d["O_id_x"], d["O_id_y"]]);
+					return [d["O_id_x"], d["O_id_y"]];
+				},
 				getTargetPosition: d => [d["D_id_x"], d["D_id_y"]],
 				getSourceColor: d => category_colors[d["category"]],
 				getTargetColor: d => category_colors[d["category"]],
