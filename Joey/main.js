@@ -7,6 +7,7 @@
 //import mapboxgl from 'mapbox-gl';
 //import {PolygonLayer} from '@deck.gl/layers';
 
+const {MapboxOverlay, ArcLayer, PolygonLayer} = deck;
 const MAPBOX_TOKEN = "pk.eyJ1Ijoiam9leWxlZWx6IiwiYSI6ImNqczVzOTdhbzBpd3Y0NG8xaTVwaDUzOHYifQ.NStc2mKrg3LQfLq1q32BpQ";
 
 const map = new mapboxgl.Map({
