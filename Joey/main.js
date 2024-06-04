@@ -292,13 +292,13 @@ map.once('load', () => {
 				data: internal_mobility_data,
 				getSourcePosition: function(d) {
 					console.log([d["O_id_x"], d["O_id_y"]]);
-					return [d["O_id_x"], d["O_id_y"]];
+					return [parseFloat(d["O_id_x"]), parseFloat(d["O_id_y"])];
 				},
-				getTargetPosition: d => [d["D_id_x"], d["D_id_y"]],
+				getTargetPosition: d => [parseFloat(d["D_id_x"]), parseFloat(d["D_id_y"])],
 				getSourceColor: d => category_colors[d["category"]],
 				getTargetColor: d => category_colors[d["category"]],
-				getHeight: d => (d["weight"]-min)/(max-min)* 5,
-				getWidth: d => ((d["weight"]-min)/(max-min)) * 20,
+				getHeight: d => (parseFloat(d["weight"])-min)/(max-min)* 5,
+				getWidth: d => ((parseFloat(d["weight"])-min)/(max-min)) * 20,
 			  });
 		  
 			  const deckOverlay = new MapboxOverlay({
