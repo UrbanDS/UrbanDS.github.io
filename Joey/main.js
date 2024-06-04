@@ -230,7 +230,7 @@ const polygonlayer = new PolygonLayer({
 */
 
 map.once('load', () => {
-  console.log("map is loaded");
+  //console.log("map is loaded");
   let income_contour_data = undefined;
   let external_mobility_data = undefined;
   let internal_mobility_data = undefined;
@@ -259,15 +259,15 @@ map.once('load', () => {
 		selectedDataset = selectedType[event.target.value];
 		
 	  const csv_path = selectedDataset[0];
-	  console.log(csv_path);
+	  //console.log(csv_path);
 	  
 	  internal_mobility_data = []
 	  d3.csv(csv_path).then(function(csv_data) {
 		internal_mobility_data = csv_data;
-		console.log(internal_mobility_data);
-		console.log(income_contour_data);
+		//console.log(internal_mobility_data);
+		//console.log(income_contour_data);
 		if (income_contour_data && internal_mobility_data) {
-			  console.log("Gotcha!")
+			  //console.log("Gotcha!")
 			  // create layer
 			  const polygonlayer = new PolygonLayer({
 				id: 'PolygonLayer',
@@ -290,10 +290,7 @@ map.once('load', () => {
 			  const arcLayer = new ArcLayer({
 				id: 'arc-internal',
 				data: internal_mobility_data,
-				getSourcePosition: function(d) {
-					console.log([d["O_id_x"], d["O_id_y"]]);
-					return [parseFloat(d["O_id_x"]), parseFloat(d["O_id_y"])];
-				},
+				getSourcePosition:d => [parseFloat(d["O_id_x"]), parseFloat(d["O_id_y"])],
 				getTargetPosition: d => [parseFloat(d["D_id_x"]), parseFloat(d["D_id_y"])],
 				getSourceColor: d => category_colors[d["category"]],
 				getTargetColor: d => category_colors[d["category"]],
@@ -305,7 +302,7 @@ map.once('load', () => {
 				interleaved: true,
 				//layers: [polygonlayer, arcLayer]
 			  });
-			  console.log(deckOverlay);
+			  //console.log(deckOverlay);
 			  map.addControl(deckOverlay);
 			  
 			  // Update layers
